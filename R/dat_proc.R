@@ -74,7 +74,8 @@ wqmdat <- mandat %>%
     ) %>% 
   filter(!is.na(do_perc)) %>% 
   group_by(id, date) %>% 
-  summarise_if(is.numeric, mean, na.rm = T)
+  summarise_if(is.numeric, mean, na.rm = T) %>% 
+  ungroup()
 
 # all oyster data
 bgdat <- read_excel(fl, sheet = 'Bag', na = c('n/a', '')) 
