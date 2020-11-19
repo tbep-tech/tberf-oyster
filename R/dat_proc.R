@@ -122,11 +122,15 @@ oysdat <- bind_rows(bgdat, dmdat, shdat, ntdat) %>%
   summarise(
     live = ifelse(length(na.omit(live)) == 0, NA, unique(live)),
     dead = ifelse(length(na.omit(dead)) == 0, NA, unique(dead)),
+    shell_total = unique(live + dead),
+    live_per = unique(live / shell_total),
     spat = ifelse(length(na.omit(spat)) == 0, NA, unique(spat)),
     aveshell_mm = mean(shell_mm, na.rm = T),
-    cntshell_mm = length(na.omit(shell_mm)),
+    maxshell_mm = ifelse(length(na.omit(shell_mm)) == 0, NA, max(shell_mm, na.rm = T)),
+    aveshell_cnt = length(na.omit(shell_mm)),
     .groups = 'drop'
-  )
+  ) %>% 
+  select(-live, -dead)
 
 # save all data objects
 save(sitdat, file = 'data/sitdat.RData', compress = 'xz')
