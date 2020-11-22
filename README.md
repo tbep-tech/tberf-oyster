@@ -18,7 +18,7 @@ head(sitdat)
     ## 3 FI_bg_16fa Fantasy Island  Bags      2016      Fall
     ## 4 FI_bg_08fa Fantasy Island  Bags      2008      Fall
     ## 5 FI_dm_16fa Fantasy Island Domes      2016      Fall
-    ## 6 FI_sh_NANA Fantasy Island Shell        NA      <NA>
+    ## 6 FI_sh_05fa Fantasy Island Shell      2005      Fall
 
 ``` r
 str(sitdat)

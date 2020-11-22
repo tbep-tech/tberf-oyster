@@ -13,6 +13,7 @@ fl <- 'data/raw/TBEP_TBERF_Oyster_Data_Year1.xlsx'
 # MB bags in 2016 here labelled as spring, data sheet says fall
 # FI dome in 2016 here labelled as spring, data sheet says fall (and 2016-2017)
 # MD dome in 2007 here labelled as spring, data sheet says fall
+# FI shell missing year and season is 2005, fall (see KR email 11/20)
 mandat <- read_excel(fl, sheet = 'Site data') %>% 
   rename(
     site = Location,  
@@ -25,11 +26,16 @@ mandat <- read_excel(fl, sheet = 'Site data') %>%
     type = gsub('^Dome$', 'Domes', type), 
     site = gsub('^Macdill$', 'MacDill', site),
     inst_year = as.numeric(inst_year),
+    inst_year = case_when(
+      site == 'Fantasy Island' & type == 'Shell' ~ 2005, 
+      T ~ inst_year
+    ),
     inst_seas = case_when(
       site == 'Fantasy Island' & type == 'Bags' & inst_year == 2016 ~ 'Fall', 
       site == '2D Island' & type == 'Bags' & inst_year == 2016 ~ 'Fall', 
       site == 'McKay Bay' & type == 'Bags' & inst_year == 2016 ~ 'Fall',
       site == 'Fantasy Island' & type == 'Domes' & inst_year == 2016 ~ 'Fall',
+      site == 'Fantasy Island' & type == 'Shell' & inst_year == 2005 ~ 'Fall',
       site == 'MacDill' & type == 'Domes' & inst_year == 2007 ~ 'Fall',
       type == 'Natural' ~ NA_character_, 
       T ~ inst_seas
@@ -114,6 +120,14 @@ oysdat <- bind_rows(bgdat, dmdat, shdat, ntdat) %>%
       type == 'Bag' ~ 'Bags', 
       type == 'Dome' ~ 'Domes',
       T ~ type
+    ), 
+    inst_year = case_when(
+      site == 'Fantasy Island' & type == 'shell' ~ 2005, 
+      T ~ inst_year
+    ), 
+    inst_seas = case_when(
+      site == 'Fantasy Island' & type == 'shell' ~ 'Fall', 
+      T ~ inst_seas
     )
   ) %>%
   left_join(sitdat, by = c('site', 'type', 'inst_year', 'inst_seas')) %>% 
