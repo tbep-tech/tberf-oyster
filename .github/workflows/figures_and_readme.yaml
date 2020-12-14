@@ -2,12 +2,13 @@ on:
   push:
     paths:
       - figures.Rmd
-
-name: Render figures
+      - README.Rmd
+      
+name: Render figures and readme
 
 jobs:
   render:
-    name: Render figures
+    name: Render figures and readme
     runs-on: macOS-latest
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
@@ -21,10 +22,12 @@ jobs:
         shell: Rscript {0}
       - name: Render figures
         run: Rscript -e 'rmarkdown::render("figures.Rmd")'
+      - name: Render readme
+        run: Rscript -e 'rmarkdown::render("README.Rmd")'
       - name: Commit results
         run: |
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions"
           git add -A
-          git commit -m 'Re-build figures.Rmd' || echo "No changes to commit"
+          git commit -m 'Re-build figures and readme' || echo "No changes to commit"
           git push origin || echo "No changes to commit"
