@@ -20,7 +20,8 @@ library(extrafont)
 data(oysdat)
 data(sitdat)
 
-fml <- "CMU Serif"
+# fml <- "CMU Serif"
+fml <- "Serif"
 col <- scales::alpha('grey', 0.2)
 colfct <- sequential_hcl(3, 'Batlow')
 
