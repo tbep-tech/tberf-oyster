@@ -1,6 +1,8 @@
 
 # README
 
+[![R-CMD-check](https://github.com/tbep-tech/tberf-oyster/workflows/R-CMD-check/badge.svg)](https://github.com/tbep-tech/tberf-oyster/actions)
+
 Materials for evaluating TBERF oyster restoration success. Raw data are
 in `data/raw` and was processed in `R/dat_proc.R`. All data can be
 joined by the common key `id`.
@@ -85,7 +87,7 @@ head(oysdat)
 str(oysdat)
 ```
 
-    ## Classes 'tbl_df', 'tbl' and 'data.frame':    206 obs. of  9 variables:
+    ## Classes 'tbl_df', 'tbl' and 'data.frame':    196 obs. of  9 variables:
     ##  $ id          : chr  "2D_bg_16fa" "2D_bg_16fa" "2D_bg_16fa" "2D_bg_16fa" ...
     ##  $ date        : Date, format: "2019-11-18" "2019-11-18" ...
     ##  $ plot        : num  1 2 3 4 5 6 7 8 9 10 ...
