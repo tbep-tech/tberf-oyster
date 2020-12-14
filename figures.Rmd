@@ -20,7 +20,7 @@ library(extrafont)
 data(oysdat)
 data(sitdat)
 
-fml <- "Lato Light"
+fml <- "Consolas"
 col <- scales::alpha('grey', 0.2)
 colfct <- sequential_hcl(3, 'Batlow')
 
@@ -45,6 +45,8 @@ dat <- oysdat %>%
 # Figures {.tabset}
 
 ## % live oysters
+
+This is a test. 
 
 ```{r, results = 'hide'}
 
