@@ -146,6 +146,10 @@ oysdat <- bind_rows(bgdat, dmdat, shdat, ntdat) %>%
   ) %>% 
   select(-live, -dead)
 
+# remove 2013-10-30 date sampled at Macdill for domes (year installed is 2018?)
+oysdat <- oysdat %>% 
+  filter(!(id %in% 'MD_dm_18sp' & `date` == as.Date('2013-10-30')))
+
 # save all data objects
 save(sitdat, file = 'data/sitdat.RData', compress = 'xz')
 save(wqmdat, file = 'data/wqmdat.RData', compress = 'xz')
