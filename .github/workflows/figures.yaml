@@ -17,9 +17,7 @@ jobs:
       - uses: r-lib/actions/setup-pandoc@v1
       - name: Install rmarkdown, remotes, and others
         run: |
-          install.packages("remotes")
-          remotes::install_cran("rmarkdown")
-          install.packages(c("tidyverse", "lubridate", "gghalves", "patchwork", "colorspace", "extrafont"))
+          install.packages(c("rmarkdown", "bookdown", "tidyverse", "lubridate", "gghalves", "patchwork", "colorspace", "extrafont"))
         shell: Rscript {0}
       - name: Render figures
         run: Rscript -e 'rmarkdown::render("figures.Rmd")'

@@ -4,7 +4,7 @@ output:
     code_folding: hide
 ---
 
-Compiled `r Sys.Date()`
+Compiled `r Sys.time()`
 
 ```{r setup, message = F, warning = F}
 
@@ -20,7 +20,7 @@ library(extrafont)
 data(oysdat)
 data(sitdat)
 
-fml <- "Consolas"
+fml <- "CMU Serif"
 col <- scales::alpha('grey', 0.2)
 colfct <- sequential_hcl(3, 'Batlow')
 
@@ -46,11 +46,14 @@ dat <- oysdat %>%
 
 ## % live oysters
 
-This is a test. 
-
 ```{r, results = 'hide'}
 
-p <- ggplot(dat, aes(x = site, y = live_per)) + 
+yval <- 'live_per'
+ylab <- '% live oysters'
+cplab <- 'Percent live oysters'
+flnm <- yval
+
+p <- ggplot(dat, aes_string(x = 'site', y = yval)) + 
   geom_half_point_panel(aes(fill = age), transformation = position_jitter(width = 1, height = 0), alpha = 0.7, pch = 21, size = 2) + 
   geom_half_violin(colour = 'black', draw_quantiles = 0.5, fill = col) +
   scale_fill_manual(values = colfct) +
@@ -70,21 +73,21 @@ p <- ggplot(dat, aes(x = site, y = live_per)) +
     legend.title = element_blank()
   ) +
   labs(
-    y = '% live oysters'
+    y = ylab
   ) + 
   guides(fill = guide_legend(nrow = 1))
   
-jpeg('figs/perclive1.jpg', height = 4, width = 9, units = 'in', res = 300, family = fml)
+jpeg(paste0('figs/', flnm, '1.jpg'), height = 4, width = 9, units = 'in', res = 300, family = fml)
 print(p)
 dev.off()
 ```
 
-```{r perclive, fig.cap = "Percent live oysters __within reef type and between site__. The left half of values show a density histogram and the right half shows percent live oysters for a plot at each site.", out.width = "100%", fig.align = 'center'}
-knitr::include_graphics('figs/perclive1.jpg')
+```{r, fig.cap = paste(cplab, "__within reef type and between site__. The left half of values show a density histogram and the right half shows percent live oysters for a plot at each site."), out.width = "100%", fig.align = 'center'}
+knitr::include_graphics(paste0('figs/', flnm, '1.jpg'))
 ```
 
 ```{r, results = 'hide'}
-p <- ggplot(dat, aes(x = type, y = live_per)) + 
+p <- ggplot(dat, aes_string(x = 'type', y = yval)) + 
   geom_half_point_panel(aes(fill = age), transformation = position_jitter(width = 1, height = 0), alpha = 0.7, pch = 21, size = 2) + 
   geom_half_violin(colour = 'black', draw_quantiles = 0.5, fill = col) +
   scale_fill_manual(values = colfct) +
@@ -104,21 +107,21 @@ p <- ggplot(dat, aes(x = type, y = live_per)) +
     legend.title = element_blank()
   ) +
   labs(
-    y = '% live oysters'
+    y = ylab
   ) + 
   guides(fill = guide_legend(nrow = 1))
   
-jpeg('figs/perclive2.jpg', height = 4, width = 9, units = 'in', res = 300, family = fml)
+jpeg(paste0('figs/', flnm, '2.jpg'), height = 4, width = 9, units = 'in', res = 300, family = fml)
 print(p)
 dev.off()
 ```
 
-```{r perclive2, fig.cap = "Percent live oysters __within site and between reef type__. The left half of values show a density histogram and the right half shows percent live oysters for a plot at each site.", out.width = "100%", fig.align = 'center'}
-knitr::include_graphics('figs/perclive2.jpg')
+```{r, fig.cap = paste(cplab, "__within site and between reef type__. The left half of values show a density histogram and the right half shows percent live oysters for a plot at each site."), out.width = "100%", fig.align = 'center'}
+knitr::include_graphics(paste0('figs/', flnm, '2.jpg'))
 ```
 
 ```{r, results = 'hide'}
-p <- ggplot(dat, aes(x = age, y = live_per)) + 
+p <- ggplot(dat, aes_string(x = 'age', y = yval)) + 
   geom_half_point_panel(aes(fill = site), transformation = position_jitter(width = 1, height = 0), alpha = 0.7, pch = 21, size = 2) + 
   geom_half_violin(colour = 'black', draw_quantiles = 0.5, fill = col) +
   facet_grid(~type, scales = 'free_x', space = 'free_x') + 
@@ -137,22 +140,21 @@ p <- ggplot(dat, aes(x = age, y = live_per)) +
     legend.title = element_blank()
   ) +
   labs(
-    y = '% live oysters'
+    y = ylab
   ) + 
   guides(fill = guide_legend(nrow = 1))
   
-jpeg('figs/perclive3.jpg', height = 4, width = 9, units = 'in', res = 300, family = fml)
+jpeg(paste0('figs/', flnm, '3.jpg'), height = 4, width = 9, units = 'in', res = 300, family = fml)
 print(p)
 dev.off()
 ```
 
-```{r perclive3, fig.cap = "Percent live oysters __within reef type and between reef age__. The left half of values show a density histogram and the right half shows percent live oysters for a plot at each site.", out.width = "100%", fig.align = 'center'}
-knitr::include_graphics('figs/perclive3.jpg')
+```{r, fig.cap = paste(cplab, "__within reef type and between reef age__. The left half of values show a density histogram and the right half shows percent live oysters for a plot at each site."), out.width = "100%", fig.align = 'center'}
+knitr::include_graphics(paste0('figs/', flnm, '3.jpg'))
 ```
 
-
 ```{r, results = 'hide'}
-p <- ggplot(dat, aes(x = type, y = live_per)) + 
+p <- ggplot(dat, aes_string(x = 'type', y = yval)) + 
   geom_half_point_panel(aes(fill = site), transformation = position_jitter(width = 1, height = 0), alpha = 0.7, pch = 21, size = 2) + 
   geom_half_violin(colour = 'black', draw_quantiles = 0.5, fill = col) +
   facet_grid(~age, scales = 'free_x', space = 'free_x') + 
@@ -171,15 +173,299 @@ p <- ggplot(dat, aes(x = type, y = live_per)) +
     legend.title = element_blank()
   ) +
   labs(
-    y = '% live oysters'
+    y = ylab
   ) + 
   guides(fill = guide_legend(nrow = 1))
   
-jpeg('figs/perclive4.jpg', height = 4, width = 9, units = 'in', res = 300, family = fml)
+jpeg(paste0('figs/', flnm, '4.jpg'), height = 4, width = 9, units = 'in', res = 300, family = fml)
 print(p)
 dev.off()
 ```
 
-```{r perclive4, fig.cap = "Percent live oysters __within reef age and between reef type__. The left half of values show a density histogram and the right half shows percent live oysters for a plot at each site.", out.width = "100%", fig.align = 'center'}
-knitr::include_graphics('figs/perclive4.jpg')
+```{r, fig.cap = paste(cplab, "__within reef age and between reef type__. The left half of values show a density histogram and the right half shows percent live oysters for a plot at each site."), out.width = "100%", fig.align = 'center'}
+knitr::include_graphics(paste0('figs/', flnm, '4.jpg'))
+```
+
+## Shell total (count)
+
+```{r, results = 'hide'}
+
+yval <- 'shell_total'
+ylab <- 'Shell total (count)'
+cplab <- 'Shell total (count)'
+flnm <- yval
+
+p <- ggplot(dat, aes_string(x = 'site', y = yval)) + 
+  geom_half_point_panel(aes(fill = age), transformation = position_jitter(width = 1, height = 0), alpha = 0.7, pch = 21, size = 2) + 
+  geom_half_violin(colour = 'black', draw_quantiles = 0.5, fill = col) +
+  scale_fill_manual(values = colfct) +
+  facet_grid(~type, scales = 'free_x', space = 'free_x') + 
+  theme_bw(base_family = fml) + 
+  theme(
+    legend.position = 'top',  
+    panel.grid.major.x = element_blank(), 
+    panel.grid.minor.x = element_blank(), 
+    panel.grid.minor.y = element_blank(), 
+    strip.placement = 'outside', 
+    strip.background = element_blank(), 
+    axis.title.x = element_blank(), 
+    axis.ticks.x = element_line(), 
+    # strip.text = element_text(size = 14), 
+    axis.text.x = element_text(angle = 45, size = 8, hjust = 1), 
+    legend.title = element_blank()
+  ) +
+  labs(
+    y = ylab
+  ) + 
+  guides(fill = guide_legend(nrow = 1))
+  
+jpeg(paste0('figs/', flnm, '1.jpg'), height = 4, width = 9, units = 'in', res = 300, family = fml)
+print(p)
+dev.off()
+```
+
+```{r, fig.cap = paste(cplab, "__within reef type and between site__. The left half of values show a density histogram and the right half shows percent live oysters for a plot at each site."), out.width = "100%", fig.align = 'center'}
+knitr::include_graphics(paste0('figs/', flnm, '1.jpg'))
+```
+
+```{r, results = 'hide'}
+p <- ggplot(dat, aes_string(x = 'type', y = yval)) + 
+  geom_half_point_panel(aes(fill = age), transformation = position_jitter(width = 1, height = 0), alpha = 0.7, pch = 21, size = 2) + 
+  geom_half_violin(colour = 'black', draw_quantiles = 0.5, fill = col) +
+  scale_fill_manual(values = colfct) +
+  facet_grid(~site, scales = 'free_x', space = 'free_x') + 
+  theme_bw(base_family = fml) + 
+  theme(
+    legend.position = 'top',  
+    panel.grid.major.x = element_blank(), 
+    panel.grid.minor.x = element_blank(), 
+    panel.grid.minor.y = element_blank(), 
+    strip.placement = 'outside', 
+    strip.background = element_blank(), 
+    axis.title.x = element_blank(), 
+    axis.ticks.x = element_line(), 
+    # strip.text = element_text(size = 14), 
+    axis.text.x = element_text(angle = 45, size = 8, hjust = 1), 
+    legend.title = element_blank()
+  ) +
+  labs(
+    y = ylab
+  ) + 
+  guides(fill = guide_legend(nrow = 1))
+  
+jpeg(paste0('figs/', flnm, '2.jpg'), height = 4, width = 9, units = 'in', res = 300, family = fml)
+print(p)
+dev.off()
+```
+
+```{r, fig.cap = paste(cplab, "__within site and between reef type__. The left half of values show a density histogram and the right half shows percent live oysters for a plot at each site."), out.width = "100%", fig.align = 'center'}
+knitr::include_graphics(paste0('figs/', flnm, '2.jpg'))
+```
+
+```{r, results = 'hide'}
+p <- ggplot(dat, aes_string(x = 'age', y = yval)) + 
+  geom_half_point_panel(aes(fill = site), transformation = position_jitter(width = 1, height = 0), alpha = 0.7, pch = 21, size = 2) + 
+  geom_half_violin(colour = 'black', draw_quantiles = 0.5, fill = col) +
+  facet_grid(~type, scales = 'free_x', space = 'free_x') + 
+  theme_bw(base_family = fml) + 
+  theme(
+    legend.position = 'top',  
+    panel.grid.major.x = element_blank(), 
+    panel.grid.minor.x = element_blank(), 
+    panel.grid.minor.y = element_blank(), 
+    strip.placement = 'outside', 
+    strip.background = element_blank(), 
+    axis.title.x = element_blank(), 
+    axis.ticks.x = element_line(), 
+    # strip.text = element_text(size = 14), 
+    axis.text.x = element_text(angle = 45, size = 8, hjust = 1), 
+    legend.title = element_blank()
+  ) +
+  labs(
+    y = ylab
+  ) + 
+  guides(fill = guide_legend(nrow = 1))
+  
+jpeg(paste0('figs/', flnm, '3.jpg'), height = 4, width = 9, units = 'in', res = 300, family = fml)
+print(p)
+dev.off()
+```
+
+```{r, fig.cap = paste(cplab, "__within reef type and between reef age__. The left half of values show a density histogram and the right half shows percent live oysters for a plot at each site."), out.width = "100%", fig.align = 'center'}
+knitr::include_graphics(paste0('figs/', flnm, '3.jpg'))
+```
+
+```{r, results = 'hide'}
+p <- ggplot(dat, aes_string(x = 'type', y = yval)) + 
+  geom_half_point_panel(aes(fill = site), transformation = position_jitter(width = 1, height = 0), alpha = 0.7, pch = 21, size = 2) + 
+  geom_half_violin(colour = 'black', draw_quantiles = 0.5, fill = col) +
+  facet_grid(~age, scales = 'free_x', space = 'free_x') + 
+  theme_bw(base_family = fml) + 
+  theme(
+    legend.position = 'top',  
+    panel.grid.major.x = element_blank(), 
+    panel.grid.minor.x = element_blank(), 
+    panel.grid.minor.y = element_blank(), 
+    strip.placement = 'outside', 
+    strip.background = element_blank(), 
+    axis.title.x = element_blank(), 
+    axis.ticks.x = element_line(), 
+    # strip.text = element_text(size = 14), 
+    axis.text.x = element_text(angle = 45, size = 8, hjust = 1), 
+    legend.title = element_blank()
+  ) +
+  labs(
+    y = ylab
+  ) + 
+  guides(fill = guide_legend(nrow = 1))
+  
+jpeg(paste0('figs/', flnm, '4.jpg'), height = 4, width = 9, units = 'in', res = 300, family = fml)
+print(p)
+dev.off()
+```
+
+```{r, fig.cap = paste(cplab, "__within reef age and between reef type__. The left half of values show a density histogram and the right half shows percent live oysters for a plot at each site."), out.width = "100%", fig.align = 'center'}
+knitr::include_graphics(paste0('figs/', flnm, '4.jpg'))
+```
+
+## Shell length (mm)
+
+```{r, results = 'hide'}
+
+yval <- 'aveshell_mm'
+ylab <- 'Shell length (mm)'
+cplab <- 'Shell length (mm, average across plots)'
+flnm <- yval
+
+p <- ggplot(dat, aes_string(x = 'site', y = yval)) + 
+  geom_half_point_panel(aes(fill = age), transformation = position_jitter(width = 1, height = 0), alpha = 0.7, pch = 21, size = 2) + 
+  geom_half_violin(colour = 'black', draw_quantiles = 0.5, fill = col) +
+  scale_fill_manual(values = colfct) +
+  facet_grid(~type, scales = 'free_x', space = 'free_x') + 
+  theme_bw(base_family = fml) + 
+  theme(
+    legend.position = 'top',  
+    panel.grid.major.x = element_blank(), 
+    panel.grid.minor.x = element_blank(), 
+    panel.grid.minor.y = element_blank(), 
+    strip.placement = 'outside', 
+    strip.background = element_blank(), 
+    axis.title.x = element_blank(), 
+    axis.ticks.x = element_line(), 
+    # strip.text = element_text(size = 14), 
+    axis.text.x = element_text(angle = 45, size = 8, hjust = 1), 
+    legend.title = element_blank()
+  ) +
+  labs(
+    y = ylab
+  ) + 
+  guides(fill = guide_legend(nrow = 1))
+  
+jpeg(paste0('figs/', flnm, '1.jpg'), height = 4, width = 9, units = 'in', res = 300, family = fml)
+print(p)
+dev.off()
+```
+
+```{r, fig.cap = paste(cplab, "__within reef type and between site__. The left half of values show a density histogram and the right half shows percent live oysters for a plot at each site."), out.width = "100%", fig.align = 'center'}
+knitr::include_graphics(paste0('figs/', flnm, '1.jpg'))
+```
+
+```{r, results = 'hide'}
+p <- ggplot(dat, aes_string(x = 'type', y = yval)) + 
+  geom_half_point_panel(aes(fill = age), transformation = position_jitter(width = 1, height = 0), alpha = 0.7, pch = 21, size = 2) + 
+  geom_half_violin(colour = 'black', draw_quantiles = 0.5, fill = col) +
+  scale_fill_manual(values = colfct) +
+  facet_grid(~site, scales = 'free_x', space = 'free_x') + 
+  theme_bw(base_family = fml) + 
+  theme(
+    legend.position = 'top',  
+    panel.grid.major.x = element_blank(), 
+    panel.grid.minor.x = element_blank(), 
+    panel.grid.minor.y = element_blank(), 
+    strip.placement = 'outside', 
+    strip.background = element_blank(), 
+    axis.title.x = element_blank(), 
+    axis.ticks.x = element_line(), 
+    # strip.text = element_text(size = 14), 
+    axis.text.x = element_text(angle = 45, size = 8, hjust = 1), 
+    legend.title = element_blank()
+  ) +
+  labs(
+    y = ylab
+  ) + 
+  guides(fill = guide_legend(nrow = 1))
+  
+jpeg(paste0('figs/', flnm, '2.jpg'), height = 4, width = 9, units = 'in', res = 300, family = fml)
+print(p)
+dev.off()
+```
+
+```{r, fig.cap = paste(cplab, "__within site and between reef type__. The left half of values show a density histogram and the right half shows percent live oysters for a plot at each site."), out.width = "100%", fig.align = 'center'}
+knitr::include_graphics(paste0('figs/', flnm, '2.jpg'))
+```
+
+```{r, results = 'hide'}
+p <- ggplot(dat, aes_string(x = 'age', y = yval)) + 
+  geom_half_point_panel(aes(fill = site), transformation = position_jitter(width = 1, height = 0), alpha = 0.7, pch = 21, size = 2) + 
+  geom_half_violin(colour = 'black', draw_quantiles = 0.5, fill = col) +
+  facet_grid(~type, scales = 'free_x', space = 'free_x') + 
+  theme_bw(base_family = fml) + 
+  theme(
+    legend.position = 'top',  
+    panel.grid.major.x = element_blank(), 
+    panel.grid.minor.x = element_blank(), 
+    panel.grid.minor.y = element_blank(), 
+    strip.placement = 'outside', 
+    strip.background = element_blank(), 
+    axis.title.x = element_blank(), 
+    axis.ticks.x = element_line(), 
+    # strip.text = element_text(size = 14), 
+    axis.text.x = element_text(angle = 45, size = 8, hjust = 1), 
+    legend.title = element_blank()
+  ) +
+  labs(
+    y = ylab
+  ) + 
+  guides(fill = guide_legend(nrow = 1))
+  
+jpeg(paste0('figs/', flnm, '3.jpg'), height = 4, width = 9, units = 'in', res = 300, family = fml)
+print(p)
+dev.off()
+```
+
+```{r, fig.cap = paste(cplab, "__within reef type and between reef age__. The left half of values show a density histogram and the right half shows percent live oysters for a plot at each site."), out.width = "100%", fig.align = 'center'}
+knitr::include_graphics(paste0('figs/', flnm, '3.jpg'))
+```
+
+```{r, results = 'hide'}
+p <- ggplot(dat, aes_string(x = 'type', y = yval)) + 
+  geom_half_point_panel(aes(fill = site), transformation = position_jitter(width = 1, height = 0), alpha = 0.7, pch = 21, size = 2) + 
+  geom_half_violin(colour = 'black', draw_quantiles = 0.5, fill = col) +
+  facet_grid(~age, scales = 'free_x', space = 'free_x') + 
+  theme_bw(base_family = fml) + 
+  theme(
+    legend.position = 'top',  
+    panel.grid.major.x = element_blank(), 
+    panel.grid.minor.x = element_blank(), 
+    panel.grid.minor.y = element_blank(), 
+    strip.placement = 'outside', 
+    strip.background = element_blank(), 
+    axis.title.x = element_blank(), 
+    axis.ticks.x = element_line(), 
+    # strip.text = element_text(size = 14), 
+    axis.text.x = element_text(angle = 45, size = 8, hjust = 1), 
+    legend.title = element_blank()
+  ) +
+  labs(
+    y = ylab
+  ) + 
+  guides(fill = guide_legend(nrow = 1))
+  
+jpeg(paste0('figs/', flnm, '4.jpg'), height = 4, width = 9, units = 'in', res = 300, family = fml)
+print(p)
+dev.off()
+```
+
+```{r, fig.cap = paste(cplab, "__within reef age and between reef type__. The left half of values show a density histogram and the right half shows percent live oysters for a plot at each site."), out.width = "100%", fig.align = 'center'}
+knitr::include_graphics(paste0('figs/', flnm, '4.jpg'))
 ```
