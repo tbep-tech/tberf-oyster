@@ -40,6 +40,29 @@ dat <- oysdat %>%
   ) %>% 
   filter(!is.na(site)) %>% 
   filter(!is.na(type))
+
+# base theme
+pthm <- theme_bw(base_family = fml) + 
+  theme(
+    legend.position = 'top',  
+    panel.grid.major.x = element_blank(), 
+    panel.grid.minor.x = element_blank(), 
+    panel.grid.minor.y = element_blank(), 
+    strip.placement = 'outside', 
+    strip.background = element_blank(), 
+    axis.title.x = element_blank(), 
+    axis.ticks.x = element_line(), 
+    axis.text.x = element_text(angle = 45, size = 8, hjust = 1), 
+    legend.title = element_blank()
+  )
+# base theme
+pthm2 <- theme_bw(base_family = fml) + 
+  theme(
+    legend.position = 'top',
+    strip.placement = 'outside', 
+    strip.background = element_blank(),  
+    legend.title = element_blank()
+  )
 ```
 
 # Figures {.tabset}
@@ -58,20 +81,7 @@ p <- ggplot(dat, aes_string(x = 'site', y = yval)) +
   geom_half_violin(colour = 'black', draw_quantiles = 0.5, fill = col) +
   scale_fill_manual(values = colfct) +
   facet_grid(~type, scales = 'free_x', space = 'free_x') + 
-  theme_bw(base_family = fml) + 
-  theme(
-    legend.position = 'top',  
-    panel.grid.major.x = element_blank(), 
-    panel.grid.minor.x = element_blank(), 
-    panel.grid.minor.y = element_blank(), 
-    strip.placement = 'outside', 
-    strip.background = element_blank(), 
-    axis.title.x = element_blank(), 
-    axis.ticks.x = element_line(), 
-    # strip.text = element_text(size = 14), 
-    axis.text.x = element_text(angle = 45, size = 8, hjust = 1), 
-    legend.title = element_blank()
-  ) +
+  pthm + 
   labs(
     y = ylab
   ) + 
@@ -92,20 +102,7 @@ p <- ggplot(dat, aes_string(x = 'type', y = yval)) +
   geom_half_violin(colour = 'black', draw_quantiles = 0.5, fill = col) +
   scale_fill_manual(values = colfct) +
   facet_grid(~site, scales = 'free_x', space = 'free_x') + 
-  theme_bw(base_family = fml) + 
-  theme(
-    legend.position = 'top',  
-    panel.grid.major.x = element_blank(), 
-    panel.grid.minor.x = element_blank(), 
-    panel.grid.minor.y = element_blank(), 
-    strip.placement = 'outside', 
-    strip.background = element_blank(), 
-    axis.title.x = element_blank(), 
-    axis.ticks.x = element_line(), 
-    # strip.text = element_text(size = 14), 
-    axis.text.x = element_text(angle = 45, size = 8, hjust = 1), 
-    legend.title = element_blank()
-  ) +
+  pthm + 
   labs(
     y = ylab
   ) + 
@@ -125,20 +122,7 @@ p <- ggplot(dat, aes_string(x = 'age', y = yval)) +
   geom_half_point_panel(aes(fill = site), transformation = position_jitter(width = 1, height = 0), alpha = 0.7, pch = 21, size = 2) + 
   geom_half_violin(colour = 'black', draw_quantiles = 0.5, fill = col) +
   facet_grid(~type, scales = 'free_x', space = 'free_x') + 
-  theme_bw(base_family = fml) + 
-  theme(
-    legend.position = 'top',  
-    panel.grid.major.x = element_blank(), 
-    panel.grid.minor.x = element_blank(), 
-    panel.grid.minor.y = element_blank(), 
-    strip.placement = 'outside', 
-    strip.background = element_blank(), 
-    axis.title.x = element_blank(), 
-    axis.ticks.x = element_line(), 
-    # strip.text = element_text(size = 14), 
-    axis.text.x = element_text(angle = 45, size = 8, hjust = 1), 
-    legend.title = element_blank()
-  ) +
+  pthm + 
   labs(
     y = ylab
   ) + 
@@ -158,20 +142,7 @@ p <- ggplot(dat, aes_string(x = 'type', y = yval)) +
   geom_half_point_panel(aes(fill = site), transformation = position_jitter(width = 1, height = 0), alpha = 0.7, pch = 21, size = 2) + 
   geom_half_violin(colour = 'black', draw_quantiles = 0.5, fill = col) +
   facet_grid(~age, scales = 'free_x', space = 'free_x') + 
-  theme_bw(base_family = fml) + 
-  theme(
-    legend.position = 'top',  
-    panel.grid.major.x = element_blank(), 
-    panel.grid.minor.x = element_blank(), 
-    panel.grid.minor.y = element_blank(), 
-    strip.placement = 'outside', 
-    strip.background = element_blank(), 
-    axis.title.x = element_blank(), 
-    axis.ticks.x = element_line(), 
-    # strip.text = element_text(size = 14), 
-    axis.text.x = element_text(angle = 45, size = 8, hjust = 1), 
-    legend.title = element_blank()
-  ) +
+  pthm + 
   labs(
     y = ylab
   ) + 
@@ -200,20 +171,7 @@ p <- ggplot(dat, aes_string(x = 'site', y = yval)) +
   geom_half_violin(colour = 'black', draw_quantiles = 0.5, fill = col) +
   scale_fill_manual(values = colfct) +
   facet_grid(~type, scales = 'free_x', space = 'free_x') + 
-  theme_bw(base_family = fml) + 
-  theme(
-    legend.position = 'top',  
-    panel.grid.major.x = element_blank(), 
-    panel.grid.minor.x = element_blank(), 
-    panel.grid.minor.y = element_blank(), 
-    strip.placement = 'outside', 
-    strip.background = element_blank(), 
-    axis.title.x = element_blank(), 
-    axis.ticks.x = element_line(), 
-    # strip.text = element_text(size = 14), 
-    axis.text.x = element_text(angle = 45, size = 8, hjust = 1), 
-    legend.title = element_blank()
-  ) +
+  pthm +
   labs(
     y = ylab
   ) + 
@@ -234,20 +192,7 @@ p <- ggplot(dat, aes_string(x = 'type', y = yval)) +
   geom_half_violin(colour = 'black', draw_quantiles = 0.5, fill = col) +
   scale_fill_manual(values = colfct) +
   facet_grid(~site, scales = 'free_x', space = 'free_x') + 
-  theme_bw(base_family = fml) + 
-  theme(
-    legend.position = 'top',  
-    panel.grid.major.x = element_blank(), 
-    panel.grid.minor.x = element_blank(), 
-    panel.grid.minor.y = element_blank(), 
-    strip.placement = 'outside', 
-    strip.background = element_blank(), 
-    axis.title.x = element_blank(), 
-    axis.ticks.x = element_line(), 
-    # strip.text = element_text(size = 14), 
-    axis.text.x = element_text(angle = 45, size = 8, hjust = 1), 
-    legend.title = element_blank()
-  ) +
+  pthm + 
   labs(
     y = ylab
   ) + 
@@ -267,20 +212,7 @@ p <- ggplot(dat, aes_string(x = 'age', y = yval)) +
   geom_half_point_panel(aes(fill = site), transformation = position_jitter(width = 1, height = 0), alpha = 0.7, pch = 21, size = 2) + 
   geom_half_violin(colour = 'black', draw_quantiles = 0.5, fill = col) +
   facet_grid(~type, scales = 'free_x', space = 'free_x') + 
-  theme_bw(base_family = fml) + 
-  theme(
-    legend.position = 'top',  
-    panel.grid.major.x = element_blank(), 
-    panel.grid.minor.x = element_blank(), 
-    panel.grid.minor.y = element_blank(), 
-    strip.placement = 'outside', 
-    strip.background = element_blank(), 
-    axis.title.x = element_blank(), 
-    axis.ticks.x = element_line(), 
-    # strip.text = element_text(size = 14), 
-    axis.text.x = element_text(angle = 45, size = 8, hjust = 1), 
-    legend.title = element_blank()
-  ) +
+  pthm + 
   labs(
     y = ylab
   ) + 
@@ -300,20 +232,7 @@ p <- ggplot(dat, aes_string(x = 'type', y = yval)) +
   geom_half_point_panel(aes(fill = site), transformation = position_jitter(width = 1, height = 0), alpha = 0.7, pch = 21, size = 2) + 
   geom_half_violin(colour = 'black', draw_quantiles = 0.5, fill = col) +
   facet_grid(~age, scales = 'free_x', space = 'free_x') + 
-  theme_bw(base_family = fml) + 
-  theme(
-    legend.position = 'top',  
-    panel.grid.major.x = element_blank(), 
-    panel.grid.minor.x = element_blank(), 
-    panel.grid.minor.y = element_blank(), 
-    strip.placement = 'outside', 
-    strip.background = element_blank(), 
-    axis.title.x = element_blank(), 
-    axis.ticks.x = element_line(), 
-    # strip.text = element_text(size = 14), 
-    axis.text.x = element_text(angle = 45, size = 8, hjust = 1), 
-    legend.title = element_blank()
-  ) +
+  pthm + 
   labs(
     y = ylab
   ) + 
@@ -342,20 +261,7 @@ p <- ggplot(dat, aes_string(x = 'site', y = yval)) +
   geom_half_violin(colour = 'black', draw_quantiles = 0.5, fill = col) +
   scale_fill_manual(values = colfct) +
   facet_grid(~type, scales = 'free_x', space = 'free_x') + 
-  theme_bw(base_family = fml) + 
-  theme(
-    legend.position = 'top',  
-    panel.grid.major.x = element_blank(), 
-    panel.grid.minor.x = element_blank(), 
-    panel.grid.minor.y = element_blank(), 
-    strip.placement = 'outside', 
-    strip.background = element_blank(), 
-    axis.title.x = element_blank(), 
-    axis.ticks.x = element_line(), 
-    # strip.text = element_text(size = 14), 
-    axis.text.x = element_text(angle = 45, size = 8, hjust = 1), 
-    legend.title = element_blank()
-  ) +
+  pthm + 
   labs(
     y = ylab
   ) + 
@@ -376,20 +282,7 @@ p <- ggplot(dat, aes_string(x = 'type', y = yval)) +
   geom_half_violin(colour = 'black', draw_quantiles = 0.5, fill = col) +
   scale_fill_manual(values = colfct) +
   facet_grid(~site, scales = 'free_x', space = 'free_x') + 
-  theme_bw(base_family = fml) + 
-  theme(
-    legend.position = 'top',  
-    panel.grid.major.x = element_blank(), 
-    panel.grid.minor.x = element_blank(), 
-    panel.grid.minor.y = element_blank(), 
-    strip.placement = 'outside', 
-    strip.background = element_blank(), 
-    axis.title.x = element_blank(), 
-    axis.ticks.x = element_line(), 
-    # strip.text = element_text(size = 14), 
-    axis.text.x = element_text(angle = 45, size = 8, hjust = 1), 
-    legend.title = element_blank()
-  ) +
+  pthm + 
   labs(
     y = ylab
   ) + 
@@ -409,20 +302,7 @@ p <- ggplot(dat, aes_string(x = 'age', y = yval)) +
   geom_half_point_panel(aes(fill = site), transformation = position_jitter(width = 1, height = 0), alpha = 0.7, pch = 21, size = 2) + 
   geom_half_violin(colour = 'black', draw_quantiles = 0.5, fill = col) +
   facet_grid(~type, scales = 'free_x', space = 'free_x') + 
-  theme_bw(base_family = fml) + 
-  theme(
-    legend.position = 'top',  
-    panel.grid.major.x = element_blank(), 
-    panel.grid.minor.x = element_blank(), 
-    panel.grid.minor.y = element_blank(), 
-    strip.placement = 'outside', 
-    strip.background = element_blank(), 
-    axis.title.x = element_blank(), 
-    axis.ticks.x = element_line(), 
-    # strip.text = element_text(size = 14), 
-    axis.text.x = element_text(angle = 45, size = 8, hjust = 1), 
-    legend.title = element_blank()
-  ) +
+  pthm + 
   labs(
     y = ylab
   ) + 
@@ -442,20 +322,7 @@ p <- ggplot(dat, aes_string(x = 'type', y = yval)) +
   geom_half_point_panel(aes(fill = site), transformation = position_jitter(width = 1, height = 0), alpha = 0.7, pch = 21, size = 2) + 
   geom_half_violin(colour = 'black', draw_quantiles = 0.5, fill = col) +
   facet_grid(~age, scales = 'free_x', space = 'free_x') + 
-  theme_bw(base_family = fml) + 
-  theme(
-    legend.position = 'top',  
-    panel.grid.major.x = element_blank(), 
-    panel.grid.minor.x = element_blank(), 
-    panel.grid.minor.y = element_blank(), 
-    strip.placement = 'outside', 
-    strip.background = element_blank(), 
-    axis.title.x = element_blank(), 
-    axis.ticks.x = element_line(), 
-    # strip.text = element_text(size = 14), 
-    axis.text.x = element_text(angle = 45, size = 8, hjust = 1), 
-    legend.title = element_blank()
-  ) +
+  pthm + 
   labs(
     y = ylab
   ) + 
@@ -468,4 +335,424 @@ dev.off()
 
 ```{r, fig.cap = paste(cplab, "__within reef age and between reef type__. The left half of values show a density histogram and the right half shows percent live oysters for a plot at each site."), out.width = "100%", fig.align = 'center'}
 knitr::include_graphics(paste0('figs/', flnm, '4.jpg'))
+```
+
+## % live oyster vs shell total (count)
+
+```{r, results = 'hide'}
+
+xvar <- 'shell_total'
+yvar <- 'live_per'
+xlab <- 'Shell total (count)'
+ylab <- '% live oysters'
+flnm <- 'livvstot'
+cplab <- 'Percent live oysters vs total shell count'
+
+p <- ggplot(dat, aes_string(x = xvar, y = yvar)) + 
+  geom_point(aes(fill = age), alpha = 0.7, pch = 21, size = 2) + 
+  scale_fill_manual(values = colfct) +
+  # stat_smooth() + 
+  facet_grid(~type, scales = 'free_x') + 
+  pthm2 +
+  labs(
+    y = ylab, 
+    x = xlab
+  ) + 
+  guides(fill = guide_legend(nrow = 1))
+  
+jpeg(paste0('figs/', flnm, '1.jpg'), height = 3.5, width = 9, units = 'in', res = 300, family = fml)
+print(p)
+dev.off()
+```
+
+```{r, fig.cap = paste(cplab, "__within reef type and between reef age__."), out.width = "100%", fig.align = 'center'}
+knitr::include_graphics(paste0('figs/', flnm, '1.jpg'))
+```
+
+```{r, results = 'hide'}
+
+p <- ggplot(dat, aes_string(x = xvar, y = yvar)) + 
+  geom_point(aes(fill = type), alpha = 0.7, pch = 21, size = 2) + 
+  # stat_smooth() + 
+  facet_grid(~age, scales = 'free_x') + 
+  pthm2 +
+  labs(
+    y = ylab, 
+    x = xlab
+  ) + 
+  guides(fill = guide_legend(nrow = 1))
+  
+jpeg(paste0('figs/', flnm, '2.jpg'), height = 3.5, width = 9, units = 'in', res = 300, family = fml)
+print(p)
+dev.off()
+```
+
+```{r, fig.cap = paste(cplab, "__within reef age and between reef type__."), out.width = "100%", fig.align = 'center'}
+knitr::include_graphics(paste0('figs/', flnm, '2.jpg'))
+```
+
+```{r, results = 'hide'}
+
+p <- ggplot(dat, aes_string(x = xvar, y = yvar)) + 
+  geom_point(aes(fill = site), alpha = 0.7, pch = 21, size = 2) + 
+  # stat_smooth() + 
+  facet_grid(~type, scales = 'free_x') + 
+  pthm2 +
+  labs(
+    y = ylab, 
+    x = xlab
+  ) + 
+  guides(fill = guide_legend(nrow = 1))
+  
+jpeg(paste0('figs/', flnm, '3.jpg'), height = 3.5, width = 9, units = 'in', res = 300, family = fml)
+print(p)
+dev.off()
+```
+
+```{r, fig.cap = paste(cplab, "__within reef type and between site__."), out.width = "100%", fig.align = 'center'}
+knitr::include_graphics(paste0('figs/', flnm, '3.jpg'))
+```
+
+```{r, results = 'hide'}
+p <- ggplot(dat, aes_string(x = xvar, y = yvar)) + 
+  geom_point(aes(fill = type), alpha = 0.7, pch = 21, size = 2) + 
+  # stat_smooth() + 
+  facet_grid(~site, scales = 'free_x') + 
+  pthm2 +
+  labs(
+    y = ylab, 
+    x = xlab
+  ) + 
+  guides(fill = guide_legend(nrow = 1))
+  
+jpeg(paste0('figs/', flnm, '4.jpg'), height = 3.5, width = 9, units = 'in', res = 300, family = fml)
+print(p)
+dev.off()
+```
+
+```{r, fig.cap = paste(cplab, "__within site and between reef type__."), out.width = "100%", fig.align = 'center'}
+knitr::include_graphics(paste0('figs/', flnm, '4.jpg'))
+```
+
+```{r, results = 'hide'}
+p <- ggplot(dat, aes_string(x = xvar, y = yvar)) + 
+  geom_point(aes(fill = age), alpha = 0.7, pch = 21, size = 2) + 
+  # stat_smooth() + 
+  scale_fill_manual(values = colfct) +
+  facet_grid(~site, scales = 'free_x') + 
+  pthm2 +
+  labs(
+    y = ylab, 
+    x = xlab
+  ) + 
+  guides(fill = guide_legend(nrow = 1))
+  
+jpeg(paste0('figs/', flnm, '5.jpg'), height = 3.5, width = 9, units = 'in', res = 300, family = fml)
+print(p)
+dev.off()
+```
+
+```{r, fig.cap = paste(cplab, "__within site and between reef age__."), out.width = "100%", fig.align = 'center'}
+knitr::include_graphics(paste0('figs/', flnm, '5.jpg'))
+```
+
+```{r, results = 'hide'}
+p <- ggplot(dat, aes_string(x = xvar, y = yvar)) + 
+  geom_point(aes(fill = site), alpha = 0.7, pch = 21, size = 2) + 
+  # stat_smooth() + 
+  facet_grid(~age, scales = 'free_x') + 
+  pthm2 +
+  labs(
+    y = ylab, 
+    x = xlab
+  ) + 
+  guides(fill = guide_legend(nrow = 1))
+  
+jpeg(paste0('figs/', flnm, '6.jpg'), height = 3.5, width = 9, units = 'in', res = 300, family = fml)
+print(p)
+dev.off()
+```
+
+```{r, fig.cap = paste(cplab, "__within reef age and between site__."), out.width = "100%", fig.align = 'center'}
+knitr::include_graphics(paste0('figs/', flnm, '6.jpg'))
+```
+
+## % live oyster vs shell length (mm)
+
+```{r, results = 'hide'}
+
+xvar <- 'aveshell_mm'
+yvar <- 'live_per'
+xlab <- 'Shell length (mm)'
+ylab <- '% live oysters'
+flnm <- 'livvslen'
+cplab <- 'Percent live oysters vs average shell length (mm)'
+
+p <- ggplot(dat, aes_string(x = xvar, y = yvar)) + 
+  geom_point(aes(fill = age), alpha = 0.7, pch = 21, size = 2) + 
+  scale_fill_manual(values = colfct) +
+  # stat_smooth() + 
+  facet_grid(~type, scales = 'free_x') + 
+  pthm2 +
+  labs(
+    y = ylab, 
+    x = xlab
+  ) + 
+  guides(fill = guide_legend(nrow = 1))
+  
+jpeg(paste0('figs/', flnm, '1.jpg'), height = 3.5, width = 9, units = 'in', res = 300, family = fml)
+print(p)
+dev.off()
+```
+
+```{r, fig.cap = paste(cplab, "__within reef type and between reef age__."), out.width = "100%", fig.align = 'center'}
+knitr::include_graphics(paste0('figs/', flnm, '1.jpg'))
+```
+
+```{r, results = 'hide'}
+
+p <- ggplot(dat, aes_string(x = xvar, y = yvar)) + 
+  geom_point(aes(fill = type), alpha = 0.7, pch = 21, size = 2) + 
+  # stat_smooth() + 
+  facet_grid(~age, scales = 'free_x') + 
+  pthm2 +
+  labs(
+    y = ylab, 
+    x = xlab
+  ) + 
+  guides(fill = guide_legend(nrow = 1))
+  
+jpeg(paste0('figs/', flnm, '2.jpg'), height = 3.5, width = 9, units = 'in', res = 300, family = fml)
+print(p)
+dev.off()
+```
+
+```{r, fig.cap = paste(cplab, "__within reef age and between reef type__."), out.width = "100%", fig.align = 'center'}
+knitr::include_graphics(paste0('figs/', flnm, '2.jpg'))
+```
+
+```{r, results = 'hide'}
+
+p <- ggplot(dat, aes_string(x = xvar, y = yvar)) + 
+  geom_point(aes(fill = site), alpha = 0.7, pch = 21, size = 2) + 
+  # stat_smooth() + 
+  facet_grid(~type, scales = 'free_x') + 
+  pthm2 +
+  labs(
+    y = ylab, 
+    x = xlab
+  ) + 
+  guides(fill = guide_legend(nrow = 1))
+  
+jpeg(paste0('figs/', flnm, '3.jpg'), height = 3.5, width = 9, units = 'in', res = 300, family = fml)
+print(p)
+dev.off()
+```
+
+```{r, fig.cap = paste(cplab, "__within reef type and between site__."), out.width = "100%", fig.align = 'center'}
+knitr::include_graphics(paste0('figs/', flnm, '3.jpg'))
+```
+
+```{r, results = 'hide'}
+p <- ggplot(dat, aes_string(x = xvar, y = yvar)) + 
+  geom_point(aes(fill = type), alpha = 0.7, pch = 21, size = 2) + 
+  # stat_smooth() + 
+  facet_grid(~site, scales = 'free_x') + 
+  pthm2 +
+  labs(
+    y = ylab, 
+    x = xlab
+  ) + 
+  guides(fill = guide_legend(nrow = 1))
+  
+jpeg(paste0('figs/', flnm, '4.jpg'), height = 3.5, width = 9, units = 'in', res = 300, family = fml)
+print(p)
+dev.off()
+```
+
+```{r, fig.cap = paste(cplab, "__within site and between reef type__."), out.width = "100%", fig.align = 'center'}
+knitr::include_graphics(paste0('figs/', flnm, '4.jpg'))
+```
+
+```{r, results = 'hide'}
+p <- ggplot(dat, aes_string(x = xvar, y = yvar)) + 
+  geom_point(aes(fill = age), alpha = 0.7, pch = 21, size = 2) + 
+  # stat_smooth() + 
+  scale_fill_manual(values = colfct) +
+  facet_grid(~site, scales = 'free_x') + 
+  pthm2 +
+  labs(
+    y = ylab, 
+    x = xlab
+  ) + 
+  guides(fill = guide_legend(nrow = 1))
+  
+jpeg(paste0('figs/', flnm, '5.jpg'), height = 3.5, width = 9, units = 'in', res = 300, family = fml)
+print(p)
+dev.off()
+```
+
+```{r, fig.cap = paste(cplab, "__within site and between reef age__."), out.width = "100%", fig.align = 'center'}
+knitr::include_graphics(paste0('figs/', flnm, '5.jpg'))
+```
+
+```{r, results = 'hide'}
+p <- ggplot(dat, aes_string(x = xvar, y = yvar)) + 
+  geom_point(aes(fill = site), alpha = 0.7, pch = 21, size = 2) + 
+  # stat_smooth() + 
+  facet_grid(~age, scales = 'free_x') + 
+  pthm2 +
+  labs(
+    y = ylab, 
+    x = xlab
+  ) + 
+  guides(fill = guide_legend(nrow = 1))
+  
+jpeg(paste0('figs/', flnm, '6.jpg'), height = 3.5, width = 9, units = 'in', res = 300, family = fml)
+print(p)
+dev.off()
+```
+
+```{r, fig.cap = paste(cplab, "__within reef age and between site__."), out.width = "100%", fig.align = 'center'}
+knitr::include_graphics(paste0('figs/', flnm, '6.jpg'))
+```
+
+## shell length (mm) vs shell total (count)
+
+```{r, results = 'hide'}
+
+xvar <- 'shell_total'
+yvar <- 'aveshell_mm'
+xlab <- 'Shell total (count)'
+ylab <- 'Shell length (mm)'
+flnm <- 'lenvstot'
+cplab <- 'Average shell length (mm) vs total shell count'
+
+p <- ggplot(dat, aes_string(x = xvar, y = yvar)) + 
+  geom_point(aes(fill = age), alpha = 0.7, pch = 21, size = 2) + 
+  scale_fill_manual(values = colfct) +
+  # stat_smooth() + 
+  facet_grid(~type, scales = 'free_x') + 
+  pthm2 +
+  labs(
+    y = ylab, 
+    x = xlab
+  ) + 
+  guides(fill = guide_legend(nrow = 1))
+  
+jpeg(paste0('figs/', flnm, '1.jpg'), height = 3.5, width = 9, units = 'in', res = 300, family = fml)
+print(p)
+dev.off()
+```
+
+```{r, fig.cap = paste(cplab, "__within reef type and between reef age__."), out.width = "100%", fig.align = 'center'}
+knitr::include_graphics(paste0('figs/', flnm, '1.jpg'))
+```
+
+```{r, results = 'hide'}
+
+p <- ggplot(dat, aes_string(x = xvar, y = yvar)) + 
+  geom_point(aes(fill = type), alpha = 0.7, pch = 21, size = 2) + 
+  # stat_smooth() + 
+  facet_grid(~age, scales = 'free_x') + 
+  pthm2 +
+  labs(
+    y = ylab, 
+    x = xlab
+  ) + 
+  guides(fill = guide_legend(nrow = 1))
+  
+jpeg(paste0('figs/', flnm, '2.jpg'), height = 3.5, width = 9, units = 'in', res = 300, family = fml)
+print(p)
+dev.off()
+```
+
+```{r, fig.cap = paste(cplab, "__within reef age and between reef type__."), out.width = "100%", fig.align = 'center'}
+knitr::include_graphics(paste0('figs/', flnm, '2.jpg'))
+```
+
+```{r, results = 'hide'}
+
+p <- ggplot(dat, aes_string(x = xvar, y = yvar)) + 
+  geom_point(aes(fill = site), alpha = 0.7, pch = 21, size = 2) + 
+  # stat_smooth() + 
+  facet_grid(~type, scales = 'free_x') + 
+  pthm2 +
+  labs(
+    y = ylab, 
+    x = xlab
+  ) + 
+  guides(fill = guide_legend(nrow = 1))
+  
+jpeg(paste0('figs/', flnm, '3.jpg'), height = 3.5, width = 9, units = 'in', res = 300, family = fml)
+print(p)
+dev.off()
+```
+
+```{r, fig.cap = paste(cplab, "__within reef type and between site__."), out.width = "100%", fig.align = 'center'}
+knitr::include_graphics(paste0('figs/', flnm, '3.jpg'))
+```
+
+```{r, results = 'hide'}
+p <- ggplot(dat, aes_string(x = xvar, y = yvar)) + 
+  geom_point(aes(fill = type), alpha = 0.7, pch = 21, size = 2) + 
+  # stat_smooth() + 
+  facet_grid(~site, scales = 'free_x') + 
+  pthm2 +
+  labs(
+    y = ylab, 
+    x = xlab
+  ) + 
+  guides(fill = guide_legend(nrow = 1))
+  
+jpeg(paste0('figs/', flnm, '4.jpg'), height = 3.5, width = 9, units = 'in', res = 300, family = fml)
+print(p)
+dev.off()
+```
+
+```{r, fig.cap = paste(cplab, "__within site and between reef type__."), out.width = "100%", fig.align = 'center'}
+knitr::include_graphics(paste0('figs/', flnm, '4.jpg'))
+```
+
+```{r, results = 'hide'}
+p <- ggplot(dat, aes_string(x = xvar, y = yvar)) + 
+  geom_point(aes(fill = age), alpha = 0.7, pch = 21, size = 2) + 
+  # stat_smooth() + 
+  scale_fill_manual(values = colfct) +
+  facet_grid(~site, scales = 'free_x') + 
+  pthm2 +
+  labs(
+    y = ylab, 
+    x = xlab
+  ) + 
+  guides(fill = guide_legend(nrow = 1))
+  
+jpeg(paste0('figs/', flnm, '5.jpg'), height = 3.5, width = 9, units = 'in', res = 300, family = fml)
+print(p)
+dev.off()
+```
+
+```{r, fig.cap = paste(cplab, "__within site and between reef age__."), out.width = "100%", fig.align = 'center'}
+knitr::include_graphics(paste0('figs/', flnm, '5.jpg'))
+```
+
+```{r, results = 'hide'}
+p <- ggplot(dat, aes_string(x = xvar, y = yvar)) + 
+  geom_point(aes(fill = site), alpha = 0.7, pch = 21, size = 2) + 
+  # stat_smooth() + 
+  facet_grid(~age, scales = 'free_x') + 
+  pthm2 +
+  labs(
+    y = ylab, 
+    x = xlab
+  ) + 
+  guides(fill = guide_legend(nrow = 1))
+  
+jpeg(paste0('figs/', flnm, '6.jpg'), height = 3.5, width = 9, units = 'in', res = 300, family = fml)
+print(p)
+dev.off()
+```
+
+```{r, fig.cap = paste(cplab, "__within reef age and between site__."), out.width = "100%", fig.align = 'center'}
+knitr::include_graphics(paste0('figs/', flnm, '6.jpg'))
 ```
