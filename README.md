@@ -1,7 +1,7 @@
 
 # README
 
-[![figures-and-readme](https://github.com/tbep-tech/tberf-oyster/workflows/figures-and-readme/badge.svg)](https://github.com/tbep-tech/tberf-oyster/actions)
+[![figures-and-readme](https://github.com/tbep-tech/tberf-oyster/workflows/Render%20figures%20and%20readme/badge.svg)](https://github.com/tbep-tech/tberf-oyster/actions)
 
 Materials for evaluating TBERF oyster restoration success. Raw data are
 in `data/raw` and was processed in `R/dat_proc.R`. All data can be
