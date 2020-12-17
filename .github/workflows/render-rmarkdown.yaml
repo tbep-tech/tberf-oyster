@@ -4,11 +4,11 @@ on:
       - figures.Rmd
       - README.Rmd
       
-name: Render figures and readme
+name: Render Rmarkdown
 
 jobs:
   render:
-    name: Render figures and readme
+    name: Render Rmarkdown
     runs-on: macOS-latest
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
