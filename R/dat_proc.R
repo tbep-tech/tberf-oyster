@@ -151,9 +151,9 @@ oysdat <- oysdat %>%
   filter(!(id %in% 'MD_dm_18sp' & `date` == as.Date('2013-10-30')))
 
 # save all data objects
-save(sitdat, file = 'data/sitdat.RData', compress = 'xz', version = 2)
-save(wqmdat, file = 'data/wqmdat.RData', compress = 'xz', version = 2)
-save(oysdat, file = 'data/oysdat.RData', compress = 'xz', version = 2)
+save(sitdat, file = 'data/sitdat.RData', version = 2)
+save(wqmdat, file = 'data/wqmdat.RData', version = 2)
+save(oysdat, file = 'data/oysdat.RData', version = 2)
 
 
   
