@@ -18,16 +18,16 @@ jobs:
       - uses: r-lib/actions/setup-pandoc@v1
       - name: Setup R dependencies
         uses: r-lib/actions/setup-r-dependencies@v2
-          with: 
-            packages: |
-              any::rmarkdown
-              any::bookdown
-              any::tidyverse
-              any::lubridate
-              any::gghalves
-              any::patchwork
-              any::colorspace
-              any::extrafont
+        with: 
+          packages: |
+            any::rmarkdown
+            any::bookdown
+            any::tidyverse
+            any::lubridate
+            any::gghalves
+            any::patchwork
+            any::colorspace
+            any::extrafont
 
       - name: Render figures
         run: Rscript -e 'rmarkdown::render("figures.Rmd")'
