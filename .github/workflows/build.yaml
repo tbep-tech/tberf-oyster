@@ -1,8 +1,7 @@
 on:
   push:
-    paths:
-      - figures.Rmd
-      - README.Rmd
+    branches:
+      - main
       
 name: build
 
